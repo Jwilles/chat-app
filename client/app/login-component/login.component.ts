@@ -87,17 +87,6 @@ export class LoginComponent {
       	  		this.router = router;
     		}				
 
-//    login(email, password) {
-//		console.log('working');
-//		var user = {
-//			email: email.value,
-//			password: password.value
-//		}
-//		this.globalVars.socket = io({ query: "userName=" + this.email });
-//		this.globalVars.socket.emit('authentication', {email: email.value, password: password.value});
-//		this.router.navigate(["chat"]);
-//
-// 	}	
 
      login(email, password) {
 		var user = {
@@ -106,31 +95,13 @@ export class LoginComponent {
 		}
 		this.service.loginUser(user).subscribe(
 				resUser => {
-				//	console.log('success');
-				//	console.log(resUser);
 					this.globalVars.socket = io({ query: "userName=" + resUser.email });
 					this.router.navigate(["lobby"]);
 				},
 				error => {
 					window.alert('Email or Password incorrect');
-					console.log(error);
 				}
 			);
 	
 	}
-
-
-//    submit(data) {
-//      this.email = data.value;
-//      if (this.email) {
-//      	this.globalVars.socket = io({ query: "userName=" + this.email });
-//        this.router.navigate(["chat"]);
-//      }
-//    }
-//
-//    addEmail($event, email) {
-//      if ($event.which === 13) { // ENTER_KEY
-//        this.submit(email);
-//      }
-//    }
 }

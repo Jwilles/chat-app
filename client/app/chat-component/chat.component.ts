@@ -63,12 +63,10 @@ import '/socket.io/socket.io.js';
 export class ChatComponent implements OnInit{
 	
 	ref: any;
-	messageInit = { name: 'System', message: 'Welcome'};
 	messages: Array<String>;
 	users: number[];
 	room: string;
 
-//	messages.push(messageInit);
 	protected router;	
 
 	constructor(@Inject(Router) router: Router) {
@@ -100,7 +98,6 @@ export class ChatComponent implements OnInit{
 
 		globalVars.socket.on('message', function(message) {
 	
-		//	ref.messages.push(message);		
 			var $messages = jQuery('#messages');
 			var $message = jQuery('<li class="list-group-item"></li>');
 					
@@ -111,8 +108,8 @@ export class ChatComponent implements OnInit{
 	}
 
 	sendFile(file) {
-		console.log('sendFile');
-		//mock encoding to base64 string
+
+		//mock encoding file to base64 string
 		var result = 'base64string'
     	   	globalVars.socket.emit('userFile', result);
 	}

@@ -69,8 +69,6 @@ import { UserService } from "../services/user.service";
 
 export class RegistrationComponent {
 
-	//email: string= null;
-	//model: any = {};
 	protected router;
 
 	constructor(
@@ -80,10 +78,7 @@ export class RegistrationComponent {
 			this.router = router
 		}
 
-
-//	userTest = { email: 'john@gmail.com', password: '1234'};
-	
-
+		
 	register(email, password) {
 		var user = {
 			email: email.value,
@@ -91,41 +86,11 @@ export class RegistrationComponent {
 		}
 		this.service.addUser(user).subscribe(
 				resUser => {
-				//	console.log('success');
-				//	console.log(resUser);
 					this.router.navigate(["login"]);
 				},
 				error => {
 					window.alert('Email already has account');
-					console.log();
 				}
 			);
-	
 	}
-
-//	submit(data) {
-//		console.log(data.value);
-//      		this.email = data.value;
-//      		if (this.email) {
-//       			this.service.addUser(this.email).subscribe(
-//				resUser => {
-//					console.log('success');
-//					this.router.navigate(["login"]);
-//				},
-//				error => {
-//					window.alert(error);
-//					console.log(error);
-//				}
-//			);
-//      		}	
-//    	}
-//
-//    	addEmail($event, email) {
-//      		if ($event.which === 13) { // ENTER_KEY
-//        		this.submit(email);
-//      		}	
-//    	}
-
-	
-
 }

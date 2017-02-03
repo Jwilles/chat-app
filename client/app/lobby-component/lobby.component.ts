@@ -110,24 +110,17 @@ export class LobbyComponent implements OnInit {
 	}
 		
 	createRoom(roomName, users) {
-	//	console.log(roomName.value);
-	//	console.log(users.value);
-		
-		
 		var newRoom = { 
 			roomName: roomName.value,
 			users: users.value,
 			creator: this.username
 		};
-	
+
 		globalVars.socket.emit('newRoom', newRoom);
 	}
 
 	joinRoom(room) {
-		//console.log(room.roomName);	
-		//console.log(room.users);
 		if (room.users.indexOf(this.username) != -1) {
-			console.log('match');
 			globalVars.socket.emit('joinRoom', room.roomName);
 			this.router.navigate(["chat"]);
 		}
