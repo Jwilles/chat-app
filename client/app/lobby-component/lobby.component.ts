@@ -20,7 +20,7 @@ import '/socket.io/socket.io.js';
 	<div class="container">
 		<div class ="row">
 			<div class="col-md-6 well">
-	        		    	<h4 class="text-center">Create Room</h4>
+	        		    	<h4 class="text-center">Create Room:</h4>
 					
 					<form #form="ngForm" (ngSubmit)="createRoom(roomName, users)">
 					
@@ -32,7 +32,7 @@ import '/socket.io/socket.io.js';
 						</div>
 	
 					<div class="form-group">
-						<label>Emails: (Separated by a comma) </label>
+						<label>Emails: (Separated by ',') </label>
 						<div class="input-group">
 							<input #users type="text" name="users" placeholder="example@gmail.com, example2@gmail.com" required>
 						</div>

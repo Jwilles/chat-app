@@ -8,9 +8,12 @@ This is a chat app developed using Node.js, Express, Socket.io and Angular2 to m
 2. "cd" into the root directory chat-app-arctic/
 3. Run "npm install"
 4. Run "npm start"
+5. When creating a room the creator email is already added so no need to include your own email and each email must be separated with a ',' 
+
+
 
 ## Bugs
 
-Due to the short turn around on the deadline that I received from Andrea I there exits a bug where chat room connections can persist after having left the conversations. I believe that this is caused by the Angular2 routing and should be possible to fix by firing a disconnect between page views.
+Due to the short turn around on the deadline that I received from Andrea, there exits a bug where chat room connections can persist after having left the conversation. This can result in multiple calls being made from the same event. I believe that this is caused by the Angular2 routing and should be possible to fix by firing a disconnect between page views.
 
 
