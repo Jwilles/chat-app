@@ -96,15 +96,35 @@ io.on('connection', function(socket) {
 		userList.push(newRoom.creator);
 		//console.log(userList);
 		if (userList.length <  10) {
-			roomArr.push({
-				roomName: newRoom.roomName,
-				users: userList,
-				currentUsers: []
-			});
-
-			io.emit('updateRooms', roomArr);
+			roomIndex = _.findIndex(roomArr, function(roomObj) {
+				return roomObj.roomName == newRoom.roomName
+			}); 
+			if (roomIndex == -1) {
+				roomArr.push({
+					roomName: newRoom.roomName,
+					users: userList,
+					currentUsers: []
+				});
+				
+				io.emit('updateRooms', roomArr);
+			} else {
+				socket.emit('duplicateRoom')
+			}
+		} else {
+			socket.emit('tooBig')
 		}
 	}); 
+
+	socket.on('userFile', function (file) {
+		var name = socket.handshake.query.userName;
+		var room = socket.rooms[1]
+		var imageObj = {
+				name: name,
+				file: file
+			};
+		console.log(imageObj);
+		io.sockets.in(room).emit('fileMessage', imageObj);
+	});
 
 	socket.on('message', function(message) {
 		var name = socket.handshake.query.userName;

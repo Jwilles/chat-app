@@ -32,7 +32,7 @@ import '/socket.io/socket.io.js';
 						</div>
 	
 					<div class="form-group">
-						<label>People: </label>
+						<label>Emails: (Separated by a comma) </label>
 						<div class="input-group">
 							<input #users type="text" name="users" placeholder="example@gmail.com, example2@gmail.com" required>
 						</div>
@@ -91,6 +91,15 @@ export class LobbyComponent implements OnInit {
 		let ref= this;
 		let temp;
 		
+		globalVars.socket.on('tooBig', function() {
+			window.alert('Chat room too big! Less than 10 people max!');
+		});
+
+		globalVars.socket.on('duplicateRoom', function() {
+			window.alert('Room name already exists! Please select another!');
+		});
+
+			
 		globalVars.socket.on('updateRooms', function(roomList) {
 			ref.rooms = roomList;
 		});
