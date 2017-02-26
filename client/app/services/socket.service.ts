@@ -10,8 +10,8 @@ import '/socket.io/socket.io.js';
 export class SocketService {
  
   private io: any;	 
-  //private host: string = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
-  private url = 'http://localhost:3000';  
+  private url: string = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
+ // private url = 'http://localhost:3000';  
   private socket;
   private name;
 

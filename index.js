@@ -19,6 +19,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //----------------Variable Init-------------------
+PORT = process.env.PORT || 3000;
+
 
 //-----------------Routes---------------------
 routes(app);
@@ -36,6 +38,6 @@ io.on('connection', function(socket) {
 
 
 //----------------Listen----------------------
-http.listen(3000, function() {
+http.listen(PORT, function() {
 	console.log('server listening on port: 3000');
 });
