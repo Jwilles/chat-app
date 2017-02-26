@@ -17,6 +17,7 @@ import { RegistrationModule } from './registration-component/index';
 import { LoginModule } from './login-component/index';
 import { ChatModule } from './chat-component/index';
 import { UserService } from './services/user.service';
+import { SocketService } from './services/socket.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -40,7 +41,8 @@ import 'rxjs/add/observable/throw';
 		AppComponent 
 	],
 	providers: [
-		UserService
+		UserService,
+		SocketService
 	],
 	bootstrap: [ 
 		AppComponent

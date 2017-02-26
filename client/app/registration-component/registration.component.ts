@@ -13,12 +13,15 @@ import { UserService } from "../services/user.service";
 		 	<div class="container">	
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 well">	
-							<h2 class= "text-center">Chat Register:</h2>
+							<h2 class= "text-center">Register</h2>
 							<form #form="ngForm" (ngSubmit)="register(email, password)">
 								
 								<div class="form-group">
 									<label>Email: </label>
 									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="glyphicon glyphicon-user"></i>
+										</span>	
 										<input class="form-control" #email type="text" name="email" placeholder="example@gmail.com" required>
 									</div>
 								</div>
@@ -26,6 +29,9 @@ import { UserService } from "../services/user.service";
 								<div class="form-group">
 									<label>Password: </label>
 									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="glyphicon glyphicon-asterisk"></i>
+										</span>	
 										<input class="form-control" #password type="password" name="password" placeholder="password" required>
 									</div>
 								</div>

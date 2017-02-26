@@ -2,15 +2,13 @@ import { Routes, RouterModule, provideRouter } from "@angular/router";
 
 import { LoginRoutes }  from "./login-component/index";
 import { RegistrationRoutes } from "./registration-component/index";
-import { ChatComponentRoutes }  from "./chat-component/index";
 import { LobbyComponentRoutes } from "./lobby-component/index";
 import {ModuleWithProviders} from "@angular/core";
 
 export const appRoutes: Routes = [
     ...RegistrationRoutes,		 
     ...LobbyComponentRoutes,
-    ...LoginRoutes,
-    ...ChatComponentRoutes
+    ...LoginRoutes
 ];
 
 export const appRoutingProviders: any[] = [ provideRouter(appRoutes) ];

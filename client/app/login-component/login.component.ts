@@ -17,12 +17,15 @@ declare var io;
 		 	<div class="container">	
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 well">	
-							<h2 class= "text-center">Chat Login:</h2>
+							<h2 class= "text-center">Login</h2>
 							<form #form="ngForm" (ngSubmit)="login(email, password)">
 								
 								<div class="form-group">
 									<label>Email: </label>
 									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="glyphicon glyphicon-user"></i>
+										</span>	
 										<input class="form-control" #email type="text" name="email" placeholder="example@gmail.com" required>
 									</div>
 								</div>
@@ -30,6 +33,9 @@ declare var io;
 								<div class="form-group">
 									<label>Password: </label>
 									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="glyphicon glyphicon-asterisk"></i>
+										</span>	
 										<input class="form-control" #password type="password" name="password" placeholder="password" required>
 									</div>
 								</div>
@@ -95,7 +101,7 @@ export class LoginComponent {
 		}
 		this.service.loginUser(user).subscribe(
 				resUser => {
-					this.globalVars.socket = io({ query: "userName=" + resUser.email });
+				//	this.globalVars.socket = io({ query: "userName=" + resUser.email });
 					this.router.navigate(["lobby"]);
 				},
 				error => {
