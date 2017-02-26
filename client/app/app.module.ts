@@ -15,7 +15,6 @@ import { routing, appRoutingProviders } from './app.routing';
 import { LobbyModule } from './lobby-component/index';
 import { RegistrationModule } from './registration-component/index';
 import { LoginModule } from './login-component/index';
-import { ChatModule } from './chat-component/index';
 import { UserService } from './services/user.service';
 import { SocketService } from './services/socket.service';
 
@@ -33,7 +32,6 @@ import 'rxjs/add/observable/throw';
 		RouterModule,
 		RouterModule.forRoot(appRoutes),
 		LoginModule,
-		ChatModule,
 		RegistrationModule,
 		LobbyModule
 	 ],

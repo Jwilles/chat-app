@@ -11,14 +11,14 @@
     'rxjs':                       'node_modules/rxjs',
     'socket.io':		  'node_modules/socket.io',
     'jquery':                     'node_modules/jquery',
-    'socket.io-client':           'node_modules/socket.io-client', 	
+   // 'socket.io-client':           'node_modules/socket.io-client/socket.io.js', 	
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
-    'socket.io-client':		  {defaultExtension: 'js'},
+    //'socket.io-client':		  {defaultExtension: 'js'},
   };
   var ngPackageNames = [
     'common',

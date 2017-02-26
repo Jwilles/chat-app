@@ -11,21 +11,13 @@ import { SocketService } from "../services/socket.service";
 	
 	<header>
 		<h3>Welcome to the conversation:</h3>
-		<button class="send btn btn-link" (click)="logout()" >Logout</button>
+		<button class="send btn btn-primary" id="logoutbutton" (click)="logout()" >Logout</button>
 	</header>
 	
 	<div class="container">
+			
 			<div class ="row">
-				<div class="col-md-4 well">
-					<div>
-		        		    	<h4>Connected Users:</h4>
-		        		  </div>	
-					
-					<div *ngFor="let user of users">
-						{{user}}
-					</div>
-				</div>
-				<div class="col-md-8 well">
+				<div class="col-md-8 col-md-offset-2 well">
 					<div>
 						<h4>Messages:</h4>
 					</div>
@@ -34,14 +26,14 @@ import { SocketService } from "../services/socket.service";
 						<div *ngFor="let message of messages">
 							<ul>
 							 	<li class="list-group-item">
-									<p><strong>{{message.name}}:</strong></p>
-									<p>{{message.message}}</p>'	
+									<p><strong>{{message.email}}:</strong></p>
+									<p>{{message.message}}</p>	
 								</li>
 							</ul> 
 						</div>	
 					</div>
 					<div>
-						<input id="message-boxID" #messagebox placeholder="Type your message here" (keyup)="sendEnter($event, messagebox)"  autocomplete="off" value="" autofocus required>
+						<input id="message-boxID" #messagebox placeholder="message" (keyup)="sendEnter($event, messagebox)"  autocomplete="off" value="" autofocus required>
 		                  		<button class="send" (click)="sendMessage(messagebox)">Send</button>
 					</div>
 				</div>
@@ -62,6 +54,14 @@ import { SocketService } from "../services/socket.service";
 			align-items: center;
 			
 		}
+
+		h3 {
+			margin: 20px;
+		}
+
+		#logoutbutton {
+			margin: 20px;
+		}
 	
 	`]
 
@@ -79,28 +79,22 @@ export class LobbyComponent implements OnInit, OnDestroy {
 	message;
 	
 	constructor(
+
 		@Inject(Router) router: Router,
 		private sockService: SocketService) {
 					
 			this.router = router		
 			let ref= this;
-						
-//			this.socket.on('sendUsername', function(username) {
-//				ref.username = username;	
-//			});
-//	
-//			this.socket.on('updateUserList', function(list) {
-//				console.log(list);
-//				ref.users = list;
-//			});
-//	
-
 	}
 		
 	
 	sendMessage(message) {
-		this.sockService.sendMessage(message.value) 
-		console.log(message.value);
+		var newMessage = {
+			email: localStorage.getItem('currentUser'),
+			message: message.value
+		}
+		console.log(newMessage);
+		this.sockService.sendMessage(newMessage) 
 		$("#message-boxID").val("");	
 	}
 
@@ -112,6 +106,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
 
 	logout() {
+		localStorage.removeItem('currentUser')
 		this.router.navigate(["login"]);
 	}
 
@@ -119,7 +114,6 @@ export class LobbyComponent implements OnInit, OnDestroy {
 		this.connection = this.sockService.getMessages().subscribe(message => {
       			this.messages.push(message);
 		});
-		console.log('init');
 	}
 
 	ngOnDestroy() {

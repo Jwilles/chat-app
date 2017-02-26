@@ -19,30 +19,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //----------------Variable Init-------------------
-var userArr = [];
 
 //-----------------Routes---------------------
 routes(app);
 
 //----------------Sockets----------------------
 io.on('connection', function(socket) {
+	console.log('connection');
 	//Emit Message
 	socket.on('new-message', function(message) {
-		var name = socket.handshake.query.userName;
-		var messageObj = {
-				name: name,
-				message: message
-			};
-		io.sockets.emit('message', messageObj);
+		io.sockets.emit('message', message);
 	});
-	
-
-	// Emit Socket username
-	socket.on('getUsername', function() {
-		socket.emit('sendUsername', socket.handshake.query.userName);
-	});
-
-
 });
 
 //io.on('connection', sockets);

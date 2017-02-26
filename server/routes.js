@@ -5,10 +5,6 @@ var {User} = require('./models/user');
 
 module.exports = function(app) {
 
-	app.get('/chat', (req, res) => {
-		res.redirect('/');
-	});
-	
 	app.get('/login', (req, res) => {
 		res.redirect('/');
 	});
@@ -19,7 +15,7 @@ module.exports = function(app) {
 	
 	//POST Register add error handlers
 	app.post('/users', (req, res) => {
-
+		
 		//create new account and hash password
 
 		User.findOne({ 'email': req.body.email}).then((user) => {
@@ -41,7 +37,6 @@ module.exports = function(app) {
 	// POST Login add error handlers
 	app.post('/users/login', (req, res) => {
 			
-
 		User.findOne({ 'email': req.body.email }).then((user) => {
 			if(!user) {
 				res.status(400).send(new Error('Login Failed'));

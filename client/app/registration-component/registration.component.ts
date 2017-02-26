@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router }    from "@angular/router";
-import * as globalVars from "../services/global";
+//import * as globalVars from "../services/global";
 import {Inject} from "@angular/core";
 import { UserService } from "../services/user.service";
 
@@ -17,12 +17,12 @@ import { UserService } from "../services/user.service";
 							<form #form="ngForm" (ngSubmit)="register(email, password)">
 								
 								<div class="form-group">
-									<label>Email: </label>
+									<label>Username: </label>
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="glyphicon glyphicon-user"></i>
 										</span>	
-										<input class="form-control" #email type="text" name="email" placeholder="example@gmail.com" required>
+										<input class="form-control" #email type="text" name="email" placeholder="user123" required>
 									</div>
 								</div>
 
@@ -74,7 +74,6 @@ import { UserService } from "../services/user.service";
 })
 
 export class RegistrationComponent {
-
 	protected router;
 
 	constructor(
@@ -95,7 +94,7 @@ export class RegistrationComponent {
 					this.router.navigate(["login"]);
 				},
 				error => {
-					window.alert('Email already has account');
+					window.alert('Username already in use!');
 				}
 			);
 	}

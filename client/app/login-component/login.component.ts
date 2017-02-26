@@ -1,12 +1,9 @@
 import { Component } from "@angular/core";
 import { Router }    from "@angular/router";
-import * as globalVars from "../services/global";
 import {Inject} from "@angular/core";
 import { UserService } from "../services/user.service";
 
 
-import '/socket.io/socket.io.js';
-declare var io;
 
 @Component({
     moduleId: module.id,
@@ -21,12 +18,12 @@ declare var io;
 							<form #form="ngForm" (ngSubmit)="login(email, password)">
 								
 								<div class="form-group">
-									<label>Email: </label>
+									<label>Username: </label>
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="glyphicon glyphicon-user"></i>
 										</span>	
-										<input class="form-control" #email type="text" name="email" placeholder="example@gmail.com" required>
+										<input class="form-control" #email type="text" name="email" placeholder="user123" required>
 									</div>
 								</div>
 
@@ -81,9 +78,8 @@ declare var io;
     })
 
 export class LoginComponent {
-    email: string = null;
+    
     protected router;
-    protected globalVars = globalVars;
 
 
     constructor( 
@@ -101,7 +97,7 @@ export class LoginComponent {
 		}
 		this.service.loginUser(user).subscribe(
 				resUser => {
-				//	this.globalVars.socket = io({ query: "userName=" + resUser.email });
+					localStorage.setItem('currentUser', resUser.email);
 					this.router.navigate(["lobby"]);
 				},
 				error => {
